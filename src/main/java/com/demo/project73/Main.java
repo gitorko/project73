@@ -22,13 +22,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @SpringBootApplication
-public class Application implements ApplicationRunner {
+public class Main implements ApplicationRunner {
 
     @Autowired
     MyEventListener myEventListener;
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(Main.class, args);
     }
 
     @Override
