@@ -1,4 +1,4 @@
-package com.demo.project73;
+package com.demo.project73.pojo;
 
 import org.springframework.context.ApplicationEvent;
 

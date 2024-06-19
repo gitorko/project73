@@ -1,11 +1,12 @@
-package com.demo.project73;
+package com.demo.project73.service;
 
 import java.time.LocalDateTime;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
+import com.demo.project73.pojo.Audit;
+import com.demo.project73.pojo.CustomEvent;
+import com.demo.project73.pojo.Project;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.scheduling.annotation.Async;
@@ -26,21 +27,17 @@ public class CustomAsync {
     @Async
     public void doSomeAsyncTask1() {
         log.info("Running task!");
-        IntStream.range(0, 5).forEach(i -> {
+        IntStream.range(0, 1).forEach(i -> {
             Project project = new Project(i, "Project_" + i);
             Audit audit = new Audit("Audit Message " + i, LocalDateTime.now());
-            log.info("Trigger event: {}", project);
-            CustomEvent<Project> projectEvent = new CustomEvent(this, project);
-            CustomEvent<Audit> auditEvent = new CustomEvent(this, audit);
-            applicationEventPublisher.publishEvent(projectEvent);
-            sleep(1);
-            applicationEventPublisher.publishEvent(auditEvent);
+            CustomEvent<Project> customEvent1 = new CustomEvent(this, project);
+            CustomEvent<Audit> customEvent2 = new CustomEvent(this, audit);
+            log.info("Publishing CustomEvent: {}", customEvent1);
+            applicationEventPublisher.publishEvent(customEvent1);
+            log.info("Publishing CustomEvent: {}", customEvent2);
+            applicationEventPublisher.publishEvent(customEvent2);
+            applicationEventPublisher.publishEvent(project);
         });
-    }
-
-    @SneakyThrows
-    public void sleep(int seconds) {
-        TimeUnit.SECONDS.sleep(seconds);
     }
 
 }
