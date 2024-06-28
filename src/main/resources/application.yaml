@@ -1,3 +1,12 @@
 spring:
   main:
-    web-application-type: none
+    banner-mode: off
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/test-db
+    username: test
+    password: test@123
+  modulith:
+    republish-outstanding-events-on-restart: true
+  jpa:
+    generate-ddl: true
