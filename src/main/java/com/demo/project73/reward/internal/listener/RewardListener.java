@@ -1,32 +1,32 @@
-package com.demo.project73.listener;
+package com.demo.project73.reward.internal.listener;
 
-import com.demo.project73.pojo.Coupon;
-import com.demo.project73.pojo.CustomEvent;
-import com.demo.project73.pojo.Order;
+import com.demo.project73.common.CustomEvent;
+import com.demo.project73.common.PrimeReward;
+import com.demo.project73.common.SeasonReward;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.event.TransactionPhase;
 import org.springframework.transaction.event.TransactionalEventListener;
 
+@Component
 @Slf4j
-@Service
-public class CustomEventListener {
-
+public class RewardListener {
     /**
      * Processes the custom event
      */
+    @Async
     @SneakyThrows
     @EventListener
     public void processEvent(CustomEvent myEvent) {
         log.info("Processing CustomEvent {}", myEvent);
-        if (myEvent.getEntity() instanceof Order) {
-            log.info("Order Event: {}", ((Order) myEvent.getEntity()).getName());
+        if (myEvent.getEntity() instanceof PrimeReward) {
+            log.info("PrimeReward Event: {}", ((PrimeReward) myEvent.getEntity()).getCouponCode());
         }
-        if (myEvent.getEntity() instanceof Coupon) {
-            log.info("Coupon Event: {}", ((Coupon) myEvent.getEntity()).getCouponCode());
+        if (myEvent.getEntity() instanceof SeasonReward) {
+            log.info("SeasonReward Event: {}", ((SeasonReward) myEvent.getEntity()).getCouponCode());
         }
     }
 
@@ -40,5 +40,4 @@ public class CustomEventListener {
     void afterAuditEventProcessed(CustomEvent myEvent) {
         log.info("After CustomEvent processed: {}", myEvent);
     }
-
 }

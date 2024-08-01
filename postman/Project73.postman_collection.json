@@ -7,13 +7,13 @@
 	},
 	"item": [
 		{
-			"name": "Save Customer",
+			"name": "Post Order",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": 1,\n    \"name\": \"raj\",\n    \"city\": \"bangalore\"\n}",
+					"raw": "{\n    \"orderId\": 1,\n    \"items\": [\n        \"chocolate\",\n        \"soap\"\n    ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -21,7 +21,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/customer",
+					"raw": "http://localhost:8080/api/order",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -29,47 +29,38 @@
 					"port": "8080",
 					"path": [
 						"api",
-						"customer"
+						"order"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Generate Custom Event",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/custom-event",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"custom-event"
-					]
-				}
+			"name": "Actuator",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
 			},
-			"response": []
-		},
-		{
-			"name": "Generate Object Event",
 			"request": {
-				"method": "PUT",
+				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"orderId\": 1,\n    \"items\": [\n        \"chocolate\",\n        \"soap\"\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://localhost:8080/api/object-event",
+					"raw": "http://localhost:8080/actuator",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"api",
-						"object-event"
+						"actuator"
 					]
 				}
 			},

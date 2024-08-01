@@ -1,18 +1,17 @@
-package com.demo.project73.pojo;
+package com.demo.project73.common;
 
-import java.util.List;
+import java.util.UUID;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 @Builder
-public class Order {
-    Long id;
-    String name;
-    List<String> items;
+public class PrimeReward {
+    UUID id;
+    String couponCode;
 }

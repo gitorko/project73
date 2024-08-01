@@ -1,4 +1,6 @@
-package com.demo.project73.pojo;
+package com.demo.project73.common;
+
+import java.util.UUID;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Builder
-public class Coupon {
-    Long id;
+public class SeasonReward {
+    UUID id;
     String couponCode;
 }

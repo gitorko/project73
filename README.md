@@ -13,6 +13,12 @@ $java --version
 openjdk 21.0.3 2024-04-16 LTS
 ```
 
+### Modulith Documentation
+
+```bash
+brew install graphviz
+```
+
 ### Postgres DB
 
 ```bash
@@ -25,6 +31,23 @@ grant all PRIVILEGES ON DATABASE "test-db" to test;
 
 docker stop pg-container
 docker start pg-container
+```
+
+### RabbitMQ
+
+Run the docker command to start a rabbitmq instance
+
+```bash
+docker run -d --hostname my-rabbit --name my-rabbit -e RABBITMQ_DEFAULT_USER=guest -e RABBITMQ_DEFAULT_PASS=guest -p 8085:15672 -p 5672:5672 rabbitmq:3-management
+```
+
+Open the rabbitmq console
+
+[http://localhost:8085](http://localhost:8085)
+
+```
+user:guest
+pwd: guest
 ```
 
 ### Dev
